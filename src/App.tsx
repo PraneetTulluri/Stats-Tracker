@@ -1,32 +1,50 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Dashboard from './pages/Dashboard';
-import Players from './pages/Players';
-import Stats from './pages/Stats';
-import './App.css';
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "./firebase";
+import Auth from "./pages/auth";
+import ViewStats from "./pages/ViewStats";
+import AddStats from "./pages/AddStats";
+import Players from "./pages/Players";
+import Dashboard from "./pages/Dashboard";
+import Settings from "./pages/Settings";
+import Graphs from "./pages/Graphs";
+import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
+import Navbar from "./components/Navbar";
 
-function App() {
+export default function App() {
+  const [user] = useAuthState(auth);
+
   return (
     <Router>
-      <div className="App">
-        <nav style={{ padding: '1rem', borderBottom: '1px solid #ccc' }}>
-          <h1>Stats Tracker</h1>
-          <div>
-            <a href="/" style={{ marginRight: '1rem' }}>Dashboard</a>
-            <a href="/players" style={{ marginRight: '1rem' }}>Players</a>
-            <a href="/stats">Stats</a>
-          </div>
-        </nav>
-        <main style={{ padding: '2rem' }}>
-          <Routes>
-            <Route path="/" element={<Dashboard />} />
-            <Route path="/players" element={<Players />} />
-            <Route path="/stats" element={<Stats />} />
-          </Routes>
-        </main>
+      <div
+        style={{
+          minHeight: "100vh",
+          width: "100vw",
+          margin: 0,
+          padding: 0,
+        }}
+      >
+        {/* Show navbar only when logged in */}
+        {user && <Navbar />}
+
+        <Routes>
+          {!user ? (
+            <>
+              <Route path="/" element={<Auth />} />
+              <Route path="*" element={<Navigate to="/" />} />
+            </>
+          ) : (
+            <>
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/view-stats" element={<ViewStats />} />
+              <Route path="/add-stats" element={<AddStats />} />
+              <Route path="/graphs" element={<Graphs />} />
+              <Route path="/players" element={<Players />} />
+              <Route path="/settings" element={<Settings />} />
+              <Route path="*" element={<Navigate to="/dashboard" />} />
+            </>
+          )}
+        </Routes>
       </div>
     </Router>
   );
 }
-
-export default App;

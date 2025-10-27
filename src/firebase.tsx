@@ -1,16 +1,30 @@
-import { initializeApp } from 'firebase/app';
-import { getDatabase } from 'firebase/database';
+// firebase.js
+import { initializeApp, getApps, getApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+import { getDatabase } from "firebase/database";
+import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-  // Your config from Firebase console
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
-  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
-  databaseURL: import.meta.env.VITE_FIREBASE_DATABASE_URL,
-  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
-  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
-  appId: import.meta.env.VITE_FIREBASE_APP_ID
+  apiKey: "AIzaSyAgLu4qkgzo4WoAOkNDemlWWznEJGHz-wg",
+  authDomain: "baseballstats-2897b.firebaseapp.com",
+  databaseURL: "https://baseballstats-2897b-default-rtdb.firebaseio.com",
+  projectId: "baseballstats-2897b",
+  storageBucket: "baseballstats-2897b.firebasestorage.app",
+  messagingSenderId: "256883657825",
+  appId: "1:256883657825:web:c8dad986b69acc28786e20",
+  measurementId: "G-90KW3VJ14B"
 };
 
-const app = initializeApp(firebaseConfig);
-export const database = getDatabase(app);
+// 👇 Only initialize once
+const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
+
+let analytics;
+if (typeof window !== "undefined") {
+  analytics = getAnalytics(app); // analytics only works in the browser
+}
+
+const database = getDatabase(app);
+export const auth = getAuth(app);
+
+export default database;
+export { app, analytics };
