@@ -46,7 +46,7 @@ export default function Dashboard() {
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))",
+            gridTemplateColumns: "repeat(auto-fit, minmax(230px, 1fr))",
             gap: "1.5rem",
           }}
         >
@@ -105,6 +105,44 @@ export default function Dashboard() {
             }}
           >
             📊 View Stats
+          </Link>
+
+          <Link
+            to="/graphs"
+            style={{
+              display: "block",
+              background: "#e67e22",
+              color: "white",
+              padding: "1.5rem",
+              borderRadius: "12px",
+              textAlign: "center",
+              textDecoration: "none",
+              fontWeight: "bold",
+              fontSize: "1.2rem",
+              boxShadow: "0 6px 15px rgba(0,0,0,0.15)",
+              transition: "0.2s",
+            }}
+          >
+            📈 Graphs
+          </Link>
+
+          <Link
+            to="/export"
+            style={{
+              display: "block",
+              background: "#16a085",
+              color: "white",
+              padding: "1.5rem",
+              borderRadius: "12px",
+              textAlign: "center",
+              textDecoration: "none",
+              fontWeight: "bold",
+              fontSize: "1.2rem",
+              boxShadow: "0 6px 15px rgba(0,0,0,0.15)",
+              transition: "0.2s",
+            }}
+          >
+            📥 Export
           </Link>
 
           <Link

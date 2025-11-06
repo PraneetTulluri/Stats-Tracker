@@ -7,6 +7,7 @@ import Players from "./pages/Players";
 import Dashboard from "./pages/Dashboard";
 import Settings from "./pages/Settings";
 import Graphs from "./pages/Graphs";
+import Export from "./pages/Export";
 import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
 import Navbar from "./components/Navbar";
 
@@ -38,6 +39,7 @@ export default function App() {
               <Route path="/view-stats" element={<ViewStats />} />
               <Route path="/add-stats" element={<AddStats />} />
               <Route path="/graphs" element={<Graphs />} />
+              <Route path="/export" element={<Export />} />
               <Route path="/players" element={<Players />} />
               <Route path="/settings" element={<Settings />} />
               <Route path="*" element={<Navigate to="/dashboard" />} />
