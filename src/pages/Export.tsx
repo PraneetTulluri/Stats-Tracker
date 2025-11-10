@@ -263,49 +263,94 @@ export default function Export() {
   return (
     <div style={{
       minHeight: '100vh',
-      background: 'linear-gradient(135deg, #0f4c75 0%, #3282b8 50%, #bbe1fa 100%)',
-      padding: '2rem 0'
+      background: 'linear-gradient(180deg, #1a472a 0%, #0d2818 50%, #1a472a 100%)',
+      padding: '2rem 0',
+      position: 'relative',
+      overflow: 'hidden'
     }}>
+      {/* Stadium Lights */}
+      <div style={{
+        position: 'absolute',
+        top: '-50%',
+        left: '10%',
+        width: '200px',
+        height: '200px',
+        background: 'radial-gradient(circle, rgba(255,244,156,0.2) 0%, transparent 70%)',
+        borderRadius: '50%',
+        filter: 'blur(60px)'
+      }} />
+      <div style={{
+        position: 'absolute',
+        top: '-50%',
+        right: '10%',
+        width: '200px',
+        height: '200px',
+        background: 'radial-gradient(circle, rgba(255,244,156,0.2) 0%, transparent 70%)',
+        borderRadius: '50%',
+        filter: 'blur(60px)'
+      }} />
+
+      {/* Header Scoreboard */}
       <div style={{
         textAlign: 'center',
         marginBottom: '3rem',
-        padding: '2rem 0',
-        background: 'rgba(255,255,255,0.1)',
-        backdropFilter: 'blur(10px)'
+        padding: '2rem',
+        background: 'linear-gradient(135deg, #1e1e1e 0%, #2d2d2d 100%)',
+        border: '4px solid #c41e3a',
+        borderRadius: '15px',
+        maxWidth: '1200px',
+        margin: '0 auto 3rem auto',
+        boxShadow: '0 10px 40px rgba(0,0,0,0.5)',
+        position: 'relative'
       }}>
+        <div style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          height: '4px',
+          background: 'linear-gradient(90deg, #c41e3a 0%, #ffd700 50%, #c41e3a 100%)'
+        }} />
         <h1 style={{
-          color: 'white',
+          color: '#ffd700',
           fontSize: '3rem',
-          textShadow: '3px 3px 6px rgba(0,0,0,0.5)',
+          textShadow: '0 0 20px rgba(255,215,0,0.5), 3px 3px 6px rgba(0,0,0,0.8)',
           marginBottom: '1rem',
-          fontWeight: 'bold'
+          fontWeight: '900',
+          letterSpacing: '2px'
         }}>
-          EXPORT DATA
+          📥 EXPORT CENTER
         </h1>
         <p style={{
-          color: '#e8f4fd',
+          color: '#fff',
           fontSize: '1.3rem',
-          textShadow: '2px 2px 4px rgba(0,0,0,0.3)'
+          textShadow: '2px 2px 4px rgba(0,0,0,0.8)',
+          margin: 0
         }}>
-          Download statistics and reports
+          Download Your Stats & Reports
         </p>
       </div>
 
       <div style={{
-        maxWidth: '900px',
+        maxWidth: '1200px',
         margin: '0 auto',
-        padding: '0 2rem'
+        padding: '0 2rem',
+        position: 'relative',
+        zIndex: 1
       }}>
         {message && (
           <div style={{
-            background: message.includes('⚠️') ? '#f39c12' : '#27ae60',
+            background: message.includes('⚠️') ? 'linear-gradient(135deg, #e67e22 0%, #d35400 100%)' : 'linear-gradient(135deg, #27ae60 0%, #229954 100%)',
             color: 'white',
-            padding: '1rem 2rem',
-            borderRadius: '12px',
+            padding: '1.5rem 2rem',
+            borderRadius: '15px',
             marginBottom: '2rem',
             textAlign: 'center',
             fontWeight: 'bold',
-            boxShadow: '0 4px 15px rgba(0,0,0,0.2)'
+            fontSize: '1.1rem',
+            border: '3px solid #ffd700',
+            boxShadow: '0 8px 25px rgba(0,0,0,0.3)',
+            textShadow: '2px 2px 4px rgba(0,0,0,0.5)'
           }}>
             {message}
           </div>
@@ -313,25 +358,26 @@ export default function Export() {
 
         {/* Player Selection */}
         <div style={{
-          background: 'white',
-          borderRadius: '25px',
+          background: 'linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.98) 100%)',
+          borderRadius: '20px',
           padding: '2rem',
           marginBottom: '2rem',
-          boxShadow: '0 20px 60px rgba(0,0,0,0.3)',
-          border: '4px solid #FFD700'
+          boxShadow: '0 15px 50px rgba(0,0,0,0.4)',
+          border: '4px solid #ffd700'
         }}>
           <h3 style={{
-            color: '#2c3e50',
+            color: '#003087',
             marginBottom: '1rem',
             fontSize: '1.5rem',
-            fontWeight: 'bold'
+            fontWeight: 'bold',
+            textShadow: '2px 2px 4px rgba(0,0,0,0.1)'
           }}>
-            Select Player (Optional)
+            🎯 Select Player (Optional)
           </h3>
           <p style={{
-            color: '#7f8c8d',
+            color: '#34495e',
             marginBottom: '1.5rem',
-            fontSize: '0.95rem'
+            fontSize: '1rem'
           }}>
             Choose a player for individual exports, or leave blank for team-wide exports
           </p>
@@ -340,18 +386,21 @@ export default function Export() {
             onChange={e => setSelectedPlayer(e.target.value)}
             style={{
               width: '100%',
-              padding: '0.8rem',
-              border: '2px solid #3498db',
-              borderRadius: '10px',
-              fontSize: '1rem',
+              padding: '1rem',
+              border: '3px solid #003087',
+              borderRadius: '12px',
+              fontSize: '1.1rem',
               cursor: 'pointer',
-              backgroundColor: '#f8f9fa'
+              backgroundColor: 'white',
+              color: '#2c3e50',
+              fontWeight: '600',
+              boxShadow: '0 4px 15px rgba(0,48,135,0.2)'
             }}
           >
-            <option value="">No player selected (team exports)</option>
+            <option value="">🏟️ No player selected (team exports)</option>
             {players.map(player => (
               <option key={player.id} value={player.id}>
-                {player.name} (#{player.jerseyNumber})
+                ⚾ {player.name} (#{player.jerseyNumber})
               </option>
             ))}
           </select>
@@ -359,46 +408,48 @@ export default function Export() {
 
         {/* Individual Player Exports */}
         <div style={{
-          background: 'white',
-          borderRadius: '25px',
+          background: 'linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.98) 100%)',
+          borderRadius: '20px',
           padding: '2rem',
           marginBottom: '2rem',
-          boxShadow: '0 20px 60px rgba(0,0,0,0.3)',
-          border: '4px solid #3498db'
+          boxShadow: '0 15px 50px rgba(0,0,0,0.4)',
+          border: '4px solid #003087'
         }}>
           <h3 style={{
-            color: '#2c3e50',
+            color: '#003087',
             marginBottom: '1.5rem',
             fontSize: '1.5rem',
-            fontWeight: 'bold'
+            fontWeight: 'bold',
+            textShadow: '2px 2px 4px rgba(0,0,0,0.1)'
           }}>
             📊 Individual Player Exports
           </h3>
           
           <div style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-            gap: '1rem'
+            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+            gap: '1.5rem'
           }}>
             <button
               onClick={exportPlayerStats}
               disabled={!selectedPlayer}
               style={{
-                padding: '1.5rem',
-                background: selectedPlayer ? 'linear-gradient(45deg, #3498db, #2980b9)' : '#bdc3c7',
+                padding: '2rem',
+                background: selectedPlayer ? 'linear-gradient(135deg, #003087 0%, #0051ba 100%)' : 'linear-gradient(135deg, #95a5a6 0%, #7f8c8d 100%)',
                 color: 'white',
-                border: 'none',
+                border: selectedPlayer ? '4px solid #ffd700' : '4px solid #bdc3c7',
                 borderRadius: '15px',
                 fontSize: '1.1rem',
                 fontWeight: 'bold',
                 cursor: selectedPlayer ? 'pointer' : 'not-allowed',
-                boxShadow: selectedPlayer ? '0 4px 15px rgba(52,152,219,0.4)' : 'none',
-                transition: 'all 0.3s ease'
+                boxShadow: selectedPlayer ? '0 8px 25px rgba(0,48,135,0.4)' : '0 4px 15px rgba(0,0,0,0.2)',
+                transition: 'all 0.3s ease',
+                textShadow: '2px 2px 4px rgba(0,0,0,0.5)'
               }}
             >
-              <div style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>📄</div>
-              Export Player Stats
-              <div style={{ fontSize: '0.85rem', opacity: 0.9, marginTop: '0.5rem' }}>
+              <div style={{ fontSize: '3rem', marginBottom: '0.8rem' }}>📄</div>
+              <div style={{ fontSize: '1.2rem', marginBottom: '0.5rem' }}>Export Player Stats</div>
+              <div style={{ fontSize: '0.9rem', opacity: 0.9 }}>
                 Season totals & advanced metrics
               </div>
             </button>
@@ -407,80 +458,91 @@ export default function Export() {
               onClick={exportPlayerGameLog}
               disabled={!selectedPlayer}
               style={{
-                padding: '1.5rem',
-                background: selectedPlayer ? 'linear-gradient(45deg, #27ae60, #229954)' : '#bdc3c7',
+                padding: '2rem',
+                background: selectedPlayer ? 'linear-gradient(135deg, #0d7c2d 0%, #10b141 100%)' : 'linear-gradient(135deg, #95a5a6 0%, #7f8c8d 100%)',
                 color: 'white',
-                border: 'none',
+                border: selectedPlayer ? '4px solid #ffd700' : '4px solid #bdc3c7',
                 borderRadius: '15px',
                 fontSize: '1.1rem',
                 fontWeight: 'bold',
                 cursor: selectedPlayer ? 'pointer' : 'not-allowed',
-                boxShadow: selectedPlayer ? '0 4px 15px rgba(39,174,96,0.4)' : 'none',
-                transition: 'all 0.3s ease'
+                boxShadow: selectedPlayer ? '0 8px 25px rgba(13,124,45,0.4)' : '0 4px 15px rgba(0,0,0,0.2)',
+                transition: 'all 0.3s ease',
+                textShadow: '2px 2px 4px rgba(0,0,0,0.5)'
               }}
             >
-              <div style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>📅</div>
-              Export Game Log
-              <div style={{ fontSize: '0.85rem', opacity: 0.9, marginTop: '0.5rem' }}>
+              <div style={{ fontSize: '3rem', marginBottom: '0.8rem' }}>📅</div>
+              <div style={{ fontSize: '1.2rem', marginBottom: '0.5rem' }}>Export Game Log</div>
+              <div style={{ fontSize: '0.9rem', opacity: 0.9 }}>
                 All games for selected player
               </div>
             </button>
           </div>
 
           {!selectedPlayer && (
-            <p style={{
-              color: '#e74c3c',
-              marginTop: '1rem',
-              textAlign: 'center',
-              fontSize: '0.9rem',
-              fontWeight: '600'
+            <div style={{
+              marginTop: '1.5rem',
+              padding: '1rem',
+              background: 'rgba(231,76,60,0.1)',
+              border: '2px solid #e74c3c',
+              borderRadius: '10px',
+              textAlign: 'center'
             }}>
-              ⚠️ Select a player above to enable individual exports
-            </p>
+              <p style={{
+                color: '#c0392b',
+                margin: 0,
+                fontSize: '1rem',
+                fontWeight: '600'
+              }}>
+                ⚠️ Select a player above to enable individual exports
+              </p>
+            </div>
           )}
         </div>
 
         {/* Team-Wide Exports */}
         <div style={{
-          background: 'white',
-          borderRadius: '25px',
+          background: 'linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.98) 100%)',
+          borderRadius: '20px',
           padding: '2rem',
-          boxShadow: '0 20px 60px rgba(0,0,0,0.3)',
-          border: '4px solid #e67e22'
+          boxShadow: '0 15px 50px rgba(0,0,0,0.4)',
+          border: '4px solid #c41e3a'
         }}>
           <h3 style={{
-            color: '#2c3e50',
+            color: '#c41e3a',
             marginBottom: '1.5rem',
             fontSize: '1.5rem',
-            fontWeight: 'bold'
+            fontWeight: 'bold',
+            textShadow: '2px 2px 4px rgba(0,0,0,0.1)'
           }}>
             👥 Team-Wide Exports
           </h3>
           
           <div style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-            gap: '1rem'
+            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+            gap: '1.5rem'
           }}>
             <button
               onClick={exportAllPlayers}
               disabled={players.length === 0}
               style={{
-                padding: '1.5rem',
-                background: players.length > 0 ? 'linear-gradient(45deg, #e67e22, #d35400)' : '#bdc3c7',
+                padding: '2rem',
+                background: players.length > 0 ? 'linear-gradient(135deg, #d35400 0%, #e67e22 100%)' : 'linear-gradient(135deg, #95a5a6 0%, #7f8c8d 100%)',
                 color: 'white',
-                border: 'none',
+                border: players.length > 0 ? '4px solid #ffd700' : '4px solid #bdc3c7',
                 borderRadius: '15px',
                 fontSize: '1.1rem',
                 fontWeight: 'bold',
                 cursor: players.length > 0 ? 'pointer' : 'not-allowed',
-                boxShadow: players.length > 0 ? '0 4px 15px rgba(230,126,34,0.4)' : 'none',
-                transition: 'all 0.3s ease'
+                boxShadow: players.length > 0 ? '0 8px 25px rgba(211,84,0,0.4)' : '0 4px 15px rgba(0,0,0,0.2)',
+                transition: 'all 0.3s ease',
+                textShadow: '2px 2px 4px rgba(0,0,0,0.5)'
               }}
             >
-              <div style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>👥</div>
-              Export All Players
-              <div style={{ fontSize: '0.85rem', opacity: 0.9, marginTop: '0.5rem' }}>
+              <div style={{ fontSize: '3rem', marginBottom: '0.8rem' }}>👥</div>
+              <div style={{ fontSize: '1.2rem', marginBottom: '0.5rem' }}>Export All Players</div>
+              <div style={{ fontSize: '0.9rem', opacity: 0.9 }}>
                 Complete roster with stats
               </div>
             </button>
@@ -489,27 +551,61 @@ export default function Export() {
               onClick={exportAllGames}
               disabled={games.length === 0}
               style={{
-                padding: '1.5rem',
-                background: games.length > 0 ? 'linear-gradient(45deg, #9b59b6, #8e44ad)' : '#bdc3c7',
+                padding: '2rem',
+                background: games.length > 0 ? 'linear-gradient(135deg, #6c3483 0%, #8e44ad 100%)' : 'linear-gradient(135deg, #95a5a6 0%, #7f8c8d 100%)',
                 color: 'white',
-                border: 'none',
+                border: games.length > 0 ? '4px solid #ffd700' : '4px solid #bdc3c7',
                 borderRadius: '15px',
                 fontSize: '1.1rem',
                 fontWeight: 'bold',
                 cursor: games.length > 0 ? 'pointer' : 'not-allowed',
-                boxShadow: games.length > 0 ? '0 4px 15px rgba(155,89,182,0.4)' : 'none',
-                transition: 'all 0.3s ease'
+                boxShadow: games.length > 0 ? '0 8px 25px rgba(108,52,131,0.4)' : '0 4px 15px rgba(0,0,0,0.2)',
+                transition: 'all 0.3s ease',
+                textShadow: '2px 2px 4px rgba(0,0,0,0.5)'
               }}
             >
-              <div style={{ fontSize: '2rem', marginBottom: '0.5rem' }}>📋</div>
-              Export All Games
-              <div style={{ fontSize: '0.85rem', opacity: 0.9, marginTop: '0.5rem' }}>
+              <div style={{ fontSize: '3rem', marginBottom: '0.8rem' }}>📋</div>
+              <div style={{ fontSize: '1.2rem', marginBottom: '0.5rem' }}>Export All Games</div>
+              <div style={{ fontSize: '0.9rem', opacity: 0.9 }}>
                 Complete game log for all players
               </div>
             </button>
           </div>
         </div>
+
+        {/* Baseball Divider */}
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '1rem',
+          margin: '3rem 0'
+        }}>
+          <div style={{
+            flex: 1,
+            height: '3px',
+            background: 'repeating-linear-gradient(90deg, #c41e3a 0px, #c41e3a 20px, transparent 20px, transparent 30px)',
+            opacity: 0.5
+          }} />
+          <div style={{
+            color: '#ffd700',
+            fontSize: '2rem',
+            textShadow: '0 0 10px rgba(255,215,0,0.5)'
+          }}>⚾</div>
+          <div style={{
+            flex: 1,
+            height: '3px',
+            background: 'repeating-linear-gradient(90deg, #c41e3a 0px, #c41e3a 20px, transparent 20px, transparent 30px)',
+            opacity: 0.5
+          }} />
+        </div>
       </div>
+
+      <style>{`
+        button:not(:disabled):hover {
+          transform: translateY(-5px) scale(1.02);
+          box-shadow: 0 15px 40px rgba(255,215,0,0.4) !important;
+        }
+      `}</style>
     </div>
   );
 }
